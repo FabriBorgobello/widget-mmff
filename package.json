@@ -7,7 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",
-    "prepare": "husky"
+    "prepare": "husky",
+    "db:delete": "tsx --env-file .env ./src/db/scripts/delete.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "drizzle-orm": "^0.38.4",
