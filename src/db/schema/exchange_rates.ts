@@ -5,6 +5,7 @@ import {
   createSelectSchema,
   createUpdateSchema,
 } from "drizzle-zod";
+import { z } from "zod";
 
 import { symbols } from "./symbols";
 import { mmffPgTable, timestamps } from "./utils";
@@ -43,3 +44,4 @@ export const exchangeRateUpdateSchema = createUpdateSchema(exchangeRates);
 /** TYPES */
 export type ExchangeRate = InferSelectModel<typeof exchangeRates>;
 export type ExchangeRateInsert = InferInsertModel<typeof exchangeRates>;
+export type ExchangeRateUpdate = z.infer<typeof exchangeRateUpdateSchema>;

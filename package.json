@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint --fix",
     "prepare": "husky",
+    "db:seed": "tsx --env-file .env ./src/db/scripts/seed.ts",
     "db:delete": "tsx --env-file .env ./src/db/scripts/delete.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit generate",
@@ -40,6 +41,7 @@
     "postcss": "^8",
     "prettier-plugin-tailwindcss": "^0.6.10",
     "tailwindcss": "^3.4.1",
+    "tsx": "^4.19.2",
     "typescript": "^5"
   },
   "lint-staged": {
