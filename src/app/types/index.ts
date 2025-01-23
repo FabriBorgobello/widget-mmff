@@ -1,178 +1,185 @@
-export type CurrencyCode =
-  | "AED"
-  | "AFN"
-  | "ALL"
-  | "AMD"
-  | "ANG"
-  | "AOA"
-  | "ARS"
-  | "AUD"
-  | "AWG"
-  | "AZN"
-  | "BAM"
-  | "BBD"
-  | "BDT"
-  | "BGN"
-  | "BHD"
-  | "BIF"
-  | "BMD"
-  | "BND"
-  | "BOB"
-  | "BRL"
-  | "BSD"
-  | "BTC"
-  | "BTN"
-  | "BWP"
-  | "BYN"
-  | "BYR"
-  | "BZD"
-  | "CAD"
-  | "CDF"
-  | "CHF"
-  | "CLF"
-  | "CLP"
-  | "CNY"
-  | "COP"
-  | "CRC"
-  | "CUC"
-  | "CUP"
-  | "CVE"
-  | "CZK"
-  | "DJF"
-  | "DKK"
-  | "DOP"
-  | "DZD"
-  | "EGP"
-  | "ERN"
-  | "ETB"
-  | "EUR"
-  | "FJD"
-  | "FKP"
-  | "GBP"
-  | "GEL"
-  | "GGP"
-  | "GHS"
-  | "GIP"
-  | "GMD"
-  | "GNF"
-  | "GTQ"
-  | "GYD"
-  | "HKD"
-  | "HNL"
-  | "HRK"
-  | "HTG"
-  | "HUF"
-  | "IDR"
-  | "ILS"
-  | "IMP"
-  | "INR"
-  | "IQD"
-  | "IRR"
-  | "ISK"
-  | "JEP"
-  | "JMD"
-  | "JOD"
-  | "JPY"
-  | "KES"
-  | "KGS"
-  | "KHR"
-  | "KMF"
-  | "KPW"
-  | "KRW"
-  | "KWD"
-  | "KYD"
-  | "KZT"
-  | "LAK"
-  | "LBP"
-  | "LKR"
-  | "LRD"
-  | "LSL"
-  | "LTL"
-  | "LVL"
-  | "LYD"
-  | "MAD"
-  | "MDL"
-  | "MGA"
-  | "MKD"
-  | "MMK"
-  | "MNT"
-  | "MOP"
-  | "MUR"
-  | "MVR"
-  | "MWK"
-  | "MXN"
-  | "MYR"
-  | "MZN"
-  | "NAD"
-  | "NGN"
-  | "NIO"
-  | "NOK"
-  | "NPR"
-  | "NZD"
-  | "OMR"
-  | "PAB"
-  | "PEN"
-  | "PGK"
-  | "PHP"
-  | "PKR"
-  | "PLN"
-  | "PYG"
-  | "QAR"
-  | "RON"
-  | "RSD"
-  | "RUB"
-  | "RWF"
-  | "SAR"
-  | "SBD"
-  | "SCR"
-  | "SDG"
-  | "SEK"
-  | "SGD"
-  | "SHP"
-  | "SLL"
-  | "SOS"
-  | "SRD"
-  | "STD"
-  | "SVC"
-  | "SYP"
-  | "SZL"
-  | "THB"
-  | "TJS"
-  | "TMT"
-  | "TND"
-  | "TOP"
-  | "TRY"
-  | "TTD"
-  | "TWD"
-  | "TZS"
-  | "UAH"
-  | "UGX"
-  | "USD"
-  | "UYU"
-  | "UZS"
-  | "VEF"
-  | "VND"
-  | "VUV"
-  | "WST"
-  | "XAF"
-  | "XAG"
-  | "XAU"
-  | "XCD"
-  | "XDR"
-  | "XOF"
-  | "XPF"
-  | "YER"
-  | "ZAR"
-  | "ZMK"
-  | "ZMW"
-  | "ZWL";
+import { z } from "zod";
 
-export type ContinentCode =
-  | "AF"
-  | "AN"
-  | "AS"
-  | "EU"
-  | "NA"
-  | "OC"
-  | "SA"
-  | "N/A";
+export const currencyCodeSchema = z.union([
+  z.literal("AED"),
+  z.literal("AFN"),
+  z.literal("ALL"),
+  z.literal("AMD"),
+  z.literal("ANG"),
+  z.literal("AOA"),
+  z.literal("ARS"),
+  z.literal("AUD"),
+  z.literal("AWG"),
+  z.literal("AZN"),
+  z.literal("BAM"),
+  z.literal("BBD"),
+  z.literal("BDT"),
+  z.literal("BGN"),
+  z.literal("BHD"),
+  z.literal("BIF"),
+  z.literal("BMD"),
+  z.literal("BND"),
+  z.literal("BOB"),
+  z.literal("BRL"),
+  z.literal("BSD"),
+  z.literal("BTC"),
+  z.literal("BTN"),
+  z.literal("BWP"),
+  z.literal("BYN"),
+  z.literal("BYR"),
+  z.literal("BZD"),
+  z.literal("CAD"),
+  z.literal("CDF"),
+  z.literal("CHF"),
+  z.literal("CLF"),
+  z.literal("CLP"),
+  z.literal("CNY"),
+  z.literal("COP"),
+  z.literal("CRC"),
+  z.literal("CUC"),
+  z.literal("CUP"),
+  z.literal("CVE"),
+  z.literal("CZK"),
+  z.literal("DJF"),
+  z.literal("DKK"),
+  z.literal("DOP"),
+  z.literal("DZD"),
+  z.literal("EGP"),
+  z.literal("ERN"),
+  z.literal("ETB"),
+  z.literal("EUR"),
+  z.literal("FJD"),
+  z.literal("FKP"),
+  z.literal("GBP"),
+  z.literal("GEL"),
+  z.literal("GGP"),
+  z.literal("GHS"),
+  z.literal("GIP"),
+  z.literal("GMD"),
+  z.literal("GNF"),
+  z.literal("GTQ"),
+  z.literal("GYD"),
+  z.literal("HKD"),
+  z.literal("HNL"),
+  z.literal("HRK"),
+  z.literal("HTG"),
+  z.literal("HUF"),
+  z.literal("IDR"),
+  z.literal("ILS"),
+  z.literal("IMP"),
+  z.literal("INR"),
+  z.literal("IQD"),
+  z.literal("IRR"),
+  z.literal("ISK"),
+  z.literal("JEP"),
+  z.literal("JMD"),
+  z.literal("JOD"),
+  z.literal("JPY"),
+  z.literal("KES"),
+  z.literal("KGS"),
+  z.literal("KHR"),
+  z.literal("KMF"),
+  z.literal("KPW"),
+  z.literal("KRW"),
+  z.literal("KWD"),
+  z.literal("KYD"),
+  z.literal("KZT"),
+  z.literal("LAK"),
+  z.literal("LBP"),
+  z.literal("LKR"),
+  z.literal("LRD"),
+  z.literal("LSL"),
+  z.literal("LTL"),
+  z.literal("LVL"),
+  z.literal("LYD"),
+  z.literal("MAD"),
+  z.literal("MDL"),
+  z.literal("MGA"),
+  z.literal("MKD"),
+  z.literal("MMK"),
+  z.literal("MNT"),
+  z.literal("MOP"),
+  z.literal("MUR"),
+  z.literal("MVR"),
+  z.literal("MWK"),
+  z.literal("MXN"),
+  z.literal("MYR"),
+  z.literal("MZN"),
+  z.literal("NAD"),
+  z.literal("NGN"),
+  z.literal("NIO"),
+  z.literal("NOK"),
+  z.literal("NPR"),
+  z.literal("NZD"),
+  z.literal("OMR"),
+  z.literal("PAB"),
+  z.literal("PEN"),
+  z.literal("PGK"),
+  z.literal("PHP"),
+  z.literal("PKR"),
+  z.literal("PLN"),
+  z.literal("PYG"),
+  z.literal("QAR"),
+  z.literal("RON"),
+  z.literal("RSD"),
+  z.literal("RUB"),
+  z.literal("RWF"),
+  z.literal("SAR"),
+  z.literal("SBD"),
+  z.literal("SCR"),
+  z.literal("SDG"),
+  z.literal("SEK"),
+  z.literal("SGD"),
+  z.literal("SHP"),
+  z.literal("SLL"),
+  z.literal("SOS"),
+  z.literal("SRD"),
+  z.literal("STD"),
+  z.literal("SVC"),
+  z.literal("SYP"),
+  z.literal("SZL"),
+  z.literal("THB"),
+  z.literal("TJS"),
+  z.literal("TMT"),
+  z.literal("TND"),
+  z.literal("TOP"),
+  z.literal("TRY"),
+  z.literal("TTD"),
+  z.literal("TWD"),
+  z.literal("TZS"),
+  z.literal("UAH"),
+  z.literal("UGX"),
+  z.literal("USD"),
+  z.literal("UYU"),
+  z.literal("UZS"),
+  z.literal("VEF"),
+  z.literal("VND"),
+  z.literal("VUV"),
+  z.literal("WST"),
+  z.literal("XAF"),
+  z.literal("XAG"),
+  z.literal("XAU"),
+  z.literal("XCD"),
+  z.literal("XDR"),
+  z.literal("XOF"),
+  z.literal("XPF"),
+  z.literal("YER"),
+  z.literal("ZAR"),
+  z.literal("ZMK"),
+  z.literal("ZMW"),
+  z.literal("ZWL"),
+]);
+
+export type CurrencyCode = z.infer<typeof currencyCodeSchema>;
+
+export const continentCodeSchema = z.union([
+  z.literal("AF"),
+  z.literal("AN"),
+  z.literal("AS"),
+  z.literal("EU"),
+  z.literal("NA"),
+  z.literal("OC"),
+  z.literal("SA"),
+  z.literal("N/A"),
+]);
+export type ContinentCode = z.infer<typeof continentCodeSchema>;
