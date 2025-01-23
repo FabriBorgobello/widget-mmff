@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:latest
-    container_name: mun
+    container_name: widget-mmff
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: mypassword
