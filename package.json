@@ -9,6 +9,8 @@
     "lint": "next lint --fix",
     "prepare": "husky",
     "db:seed": "tsx --env-file .env ./src/db/scripts/seed.ts",
+    "db:exchanges-parse": "tsx --env-file .env ./src/db/scripts/exchanges/parse.ts",
+    "db:exchanges-seed": "tsx --env-file .env ./src/db/scripts/exchanges/seed.ts",
     "db:delete": "tsx --env-file .env ./src/db/scripts/delete.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit generate",

@@ -1,5 +1,5 @@
 import { InferSelectModel, InferInsertModel } from "drizzle-orm";
-import { date, index, integer, numeric, serial } from "drizzle-orm/pg-core";
+import { date, index, numeric, serial, varchar } from "drizzle-orm/pg-core";
 import {
   createInsertSchema,
   createSelectSchema,
@@ -14,10 +14,10 @@ export const exchangeRates = mmffPgTable(
   "exchange_rates",
   {
     id: serial("id").primaryKey(),
-    baseCurrencyId: integer("base_currency_id")
+    baseCurrencyId: varchar("base_currency_id", { length: 3 })
       .notNull()
       .references(() => symbols.id),
-    targetCurrencyId: integer("target_currency_id")
+    targetCurrencyId: varchar("target_currency_id", { length: 3 })
       .notNull()
       .references(() => symbols.id),
     date: date("date").notNull(),
