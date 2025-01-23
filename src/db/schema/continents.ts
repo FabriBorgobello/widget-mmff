@@ -21,7 +21,7 @@ export const continentCodesEnum = pgEnum("continent_codes", [
 ]);
 
 export const continents = mmffPgTable("continents", {
-  code: continentCodesEnum().unique().primaryKey(),
+  id: continentCodesEnum().primaryKey(),
   name: varchar("name", { length: 50 }).notNull().unique(),
   ...timestamps,
 });

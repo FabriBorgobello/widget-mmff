@@ -1,5 +1,5 @@
 import { InferSelectModel, InferInsertModel } from "drizzle-orm";
-import { serial, varchar } from "drizzle-orm/pg-core";
+import { varchar } from "drizzle-orm/pg-core";
 import {
   createInsertSchema,
   createSelectSchema,
@@ -11,12 +11,11 @@ import { continentCodesEnum, continents } from "./continents";
 import { mmffPgTable, timestamps } from "./utils";
 
 export const symbols = mmffPgTable("symbols", {
-  id: serial("id").primaryKey(),
-  code: varchar("code", { length: 3 }).notNull().unique(),
+  id: varchar("id", { length: 3 }).primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
   continentId: continentCodesEnum()
     .notNull()
-    .references(() => continents.code),
+    .references(() => continents.id),
   ...timestamps,
 });
 
