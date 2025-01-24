@@ -16,9 +16,9 @@ export function Chart() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Area Chart - Stacked</CardTitle>
+        <CardTitle>Exchange Rate Trends Against the US Dollar</CardTitle>
         <CardDescription>
-          Showing total visitors for the last 6 months
+          Comparative Analysis of Currency Fluctuations
         </CardDescription>
       </CardHeader>
       <CardContent>
