@@ -45,8 +45,10 @@ export function Dates() {
                   <PopoverContent align="start">
                     <Calendar
                       mode="single"
-                      selected={value}
-                      onSelect={onChange}
+                      selected={new Date(value)}
+                      onSelect={(date) => {
+                        onChange(date ? format(date, "yyyy-MM-dd") : undefined);
+                      }}
                       initialFocus
                     />
                   </PopoverContent>
