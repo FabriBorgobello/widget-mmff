@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 
-import { and, eq, gte, lte, inArray } from "drizzle-orm";
+import { and, eq, gte, lte, inArray, not } from "drizzle-orm";
 
 import { db } from "@/db";
 import { exchangeRates } from "@/db/schema/exchange_rates";
@@ -11,7 +11,6 @@ import {
 } from "./schemas";
 
 export async function GET(request: NextRequest) {
-  console.log(request.nextUrl.searchParams);
   const res = exchangeRateRequestSchema.safeParse(
     Object.fromEntries(request.nextUrl.searchParams.entries()),
   );
@@ -33,6 +32,7 @@ export async function GET(request: NextRequest) {
         lte(exchangeRates.date, query.end_date),
         query.currencies &&
           inArray(exchangeRates.targetCurrencyId, query.currencies),
+        not(inArray(exchangeRates.targetCurrencyId, ["USD"])),
       ),
     );
 
@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
         if (!acc[date]) {
           acc[date] = {};
         }
-        acc[date][targetCurrencyId] = Number(rate);
+        acc[date][targetCurrencyId] = 1 / Number(rate);
         return acc;
       },
       {},
