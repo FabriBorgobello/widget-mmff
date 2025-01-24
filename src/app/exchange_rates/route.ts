@@ -1,29 +1,14 @@
 import type { NextRequest } from "next/server";
 
 import { and, eq, gte, lte, inArray } from "drizzle-orm";
-import { z } from "zod";
 
 import { db } from "@/db";
 import { exchangeRates } from "@/db/schema/exchange_rates";
 
-import { currencyCodeSchema } from "../types";
-
-const dateSchema = z
-  .string()
-  .refine(
-    (value) => /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(value),
-    { message: "Invalid date format. Expected YYYY-MM-DD." },
-  );
-
-const exchangeRateRequestSchema = z.object({
-  start_date: dateSchema,
-  end_date: dateSchema,
-  currencies: z
-    .string()
-    .transform((value) => value.split(",").map((item) => item.trim()))
-    .pipe(z.array(currencyCodeSchema))
-    .optional(),
-});
+import {
+  exchangeRateRequestSchema,
+  exchangeRateResponseSchema,
+} from "./schemas";
 
 export async function GET(request: NextRequest) {
   console.log(request.nextUrl.searchParams);
@@ -66,5 +51,5 @@ export async function GET(request: NextRequest) {
     ),
   };
 
-  return Response.json(formatted);
+  return Response.json(exchangeRateResponseSchema.parse(formatted));
 }

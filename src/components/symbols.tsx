@@ -4,8 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Controller, useFormContext } from "react-hook-form";
 import { z } from "zod";
 
+import { currencyCodeSchema } from "@/app/exchange_rates/schemas";
 import { Filters } from "@/app/page";
-import { currencyCodeSchema } from "@/app/types";
 
 import { MultiSelect } from "./multi-select";
 

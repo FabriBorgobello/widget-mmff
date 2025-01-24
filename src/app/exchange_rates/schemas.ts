@@ -187,3 +187,30 @@ export const continentCodeSchema = z.union([
   z.literal("N/A"),
 ]);
 export type ContinentCode = z.infer<typeof continentCodeSchema>;
+
+export const dateSchema = z
+  .string()
+  .refine(
+    (value) => /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(value),
+    { message: "Invalid date format. Expected YYYY-MM-DD." },
+  );
+
+export const exchangeRateRequestSchema = z.object({
+  start_date: dateSchema,
+  end_date: dateSchema,
+  currencies: z
+    .string()
+    .transform((value) => value.split(",").map((item) => item.trim()))
+    .pipe(z.array(currencyCodeSchema))
+    .optional(),
+});
+
+export type ExchangeRateRequest = z.infer<typeof exchangeRateRequestSchema>;
+
+export const exchangeRateResponseSchema = z.object({
+  start_date: dateSchema,
+  end_date: dateSchema,
+  rates: z.record(z.string(), z.record(currencyCodeSchema, z.number())),
+});
+
+export type ExchangeRateResponse = z.infer<typeof exchangeRateResponseSchema>;

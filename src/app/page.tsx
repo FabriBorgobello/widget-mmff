@@ -25,7 +25,7 @@ export type Filters = z.infer<typeof filtersSchema>;
 const FILTERS_DEFAULTS: Filters = {
   start_date: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
   end_date: new Date(),
-  currencies: ["USD", "EUR"],
+  currencies: [],
 };
 
 export default function Home() {
@@ -46,7 +46,7 @@ export default function Home() {
         <FormProvider {...methods}>
           <div className="flex flex-col gap-12">
             <FiltersForm />
-            <Chart />
+            {methods.watch().currencies.length > 0 && <Chart />}
           </div>
         </FormProvider>
       </CardContent>
