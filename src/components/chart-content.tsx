@@ -2,7 +2,7 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { useFormContext, useWatch } from "react-hook-form";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 import {
   ExchangeRateResponse,
@@ -91,10 +91,15 @@ export function ChartContent() {
         margin={{ left: 12, right: 12 }}
       >
         <CartesianGrid vertical={false} />
+        <YAxis
+          type="number"
+          tickMargin={8}
+          tickFormatter={(value) => value.toFixed(2)}
+        />
         <XAxis
           dataKey="date"
-          tickLine={false}
-          axisLine={false}
+          type="category"
+          interval={Math.ceil(Object.keys(data.rates).length / 10)}
           tickMargin={8}
           tickFormatter={(value) => format(value, "MMM dd")}
         />
