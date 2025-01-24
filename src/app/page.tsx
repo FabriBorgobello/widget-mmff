@@ -44,8 +44,10 @@ export default function Home() {
       </CardHeader>
       <CardContent>
         <FormProvider {...methods}>
-          <FiltersForm />
-          <Chart />
+          <div className="flex flex-col gap-12">
+            <FiltersForm />
+            <Chart />
+          </div>
         </FormProvider>
       </CardContent>
     </Card>

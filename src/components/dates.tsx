@@ -12,7 +12,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 export function Dates() {
   const methods = useFormContext<Filters>();
   return (
-    <div className="flex gap-4">
+    <div className="flex flex-col gap-4 sm:flex-row">
       {(["start_date", "end_date"] as const).map((name) => (
         <Controller
           key={name}
@@ -21,7 +21,7 @@ export function Dates() {
           render={({ field }) => {
             const { value, onChange } = field;
             return (
-              <div>
+              <div className="w-full md:w-auto">
                 <label className="mb-1 block text-sm font-medium text-gray-700">
                   {name === "start_date" ? "Start Date" : "End Date"}
                 </label>
@@ -30,7 +30,7 @@ export function Dates() {
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "justify-start text-left font-normal",
+                        "w-full justify-start pl-3 text-left font-normal md:w-auto",
                         !value && "text-muted-foreground",
                       )}
                     >

@@ -13,7 +13,10 @@ export function FiltersForm() {
   }
 
   return (
-    <form onSubmit={methods.handleSubmit(onSubmit)}>
+    <form
+      onSubmit={methods.handleSubmit(onSubmit)}
+      className="flex flex-col gap-4 md:flex-row"
+    >
       <Dates />
       <Symbols />
     </form>
