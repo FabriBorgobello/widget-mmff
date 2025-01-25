@@ -1,5 +1,7 @@
 import { Suspense } from "react";
 
+import { ErrorBoundary } from "react-error-boundary";
+
 import {
   Card,
   CardContent,
@@ -22,9 +24,18 @@ export function Chart() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Suspense fallback="Loading...">
-          <ChartContent />
-        </Suspense>
+        <ErrorBoundary
+          FallbackComponent={(props) => (
+            <div>
+              Error
+              <pre>{props.error.message}</pre>
+            </div>
+          )}
+        >
+          <Suspense fallback="Loading...">
+            <ChartContent />
+          </Suspense>
+        </ErrorBoundary>
       </CardContent>
       <CardFooter>
         <ChartFooter />
