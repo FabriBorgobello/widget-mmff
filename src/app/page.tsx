@@ -35,9 +35,9 @@ export default function Home() {
   });
 
   return (
-    <Card className="h-full w-full">
+    <Card className="min-h-screen w-full">
       <CardHeader>
-        <CardTitle>Currency Exchange Rates</CardTitle>
+        <CardTitle className="text-2xl">Currency Exchange Rates</CardTitle>
         <CardDescription>
           Compare exchange rates for selected currencies over time
         </CardDescription>

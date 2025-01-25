@@ -33,7 +33,7 @@ import { cn } from "@/lib/utils";
  * Uses class-variance-authority (cva) to define different styles based on "variant" prop.
  */
 const multiSelectVariants = cva(
-  "transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300",
+  "transition ease-in-out delay-150 duration-300",
   {
     variants: {
       variant: {
@@ -220,7 +220,7 @@ export const MultiSelect = forwardRef<HTMLButtonElement, MultiSelectProps>(
                   {selectedValues.length > maxCount && (
                     <Badge
                       className={cn(
-                        "border-foreground/1 bg-transparent text-foreground hover:bg-transparent",
+                        "border-foreground/1 bg-transparent text-foreground",
                         multiSelectVariants({ variant }),
                       )}
                     >
