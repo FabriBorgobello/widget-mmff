@@ -32,7 +32,11 @@ export function Chart() {
             </div>
           )}
         >
-          <Suspense fallback="Loading...">
+          <Suspense
+            fallback={
+              <div className="aspect-video h-full w-full animate-pulse rounded-lg bg-gray-100"></div>
+            }
+          >
             <ChartContent />
           </Suspense>
         </ErrorBoundary>

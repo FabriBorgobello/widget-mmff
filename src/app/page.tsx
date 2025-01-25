@@ -23,8 +23,8 @@ const filtersSchema = z.object({
 export type Filters = z.infer<typeof filtersSchema>;
 
 const FILTERS_DEFAULTS: Filters = {
-  start_date: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
-  end_date: new Date(),
+  start_date: new Date("2024-12-01"),
+  end_date: new Date("2024-12-31"),
   currencies: [],
 };
 
@@ -36,13 +36,13 @@ export default function Home() {
 
   return (
     <Card className="min-h-screen w-full">
-      <CardHeader>
+      <CardHeader className="p-4 md:p-6">
         <CardTitle className="text-2xl">Currency Exchange Rates</CardTitle>
         <CardDescription>
           Compare exchange rates for selected currencies over time
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-4 md:p-6">
         <FormProvider {...methods}>
           <div className="flex flex-col gap-12">
             <FiltersForm />
