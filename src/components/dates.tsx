@@ -14,7 +14,7 @@ export function Dates() {
 
   console.log(methods.formState.errors);
   return (
-    <div>
+    <div className="flex flex-col justify-between gap-1">
       <div className="flex flex-col gap-4 sm:flex-row">
         {(["dates.start_date", "dates.end_date"] as const).map((name) => (
           <Controller
@@ -24,8 +24,8 @@ export function Dates() {
             render={({ field }) => {
               const { value, onChange } = field;
               return (
-                <div className="w-full md:w-auto">
-                  <label className="mb-1 block text-sm font-medium text-gray-700">
+                <div className="flex w-full flex-col gap-1 md:w-auto">
+                  <label className="block text-sm font-medium text-gray-700">
                     {name === "dates.start_date" ? "Start Date" : "End Date"}
                   </label>
                   <Popover>
@@ -61,17 +61,17 @@ export function Dates() {
         ))}
       </div>
       {methods.formState.errors.dates?.root && (
-        <div className="mt-1 text-sm text-red-600">
+        <div className="text-sm text-red-600">
           {methods.formState.errors.dates.root.message}
         </div>
       )}
       {methods.formState.errors.dates?.start_date && (
-        <div className="mt-1 text-sm text-red-600">
+        <div className="text-sm text-red-600">
           {methods.formState.errors.dates.start_date.message}
         </div>
       )}
       {methods.formState.errors.dates?.end_date && (
-        <div className="mt-1 text-sm text-red-600">
+        <div className="text-sm text-red-600">
           {methods.formState.errors.dates.end_date.message}
         </div>
       )}

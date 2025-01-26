@@ -17,8 +17,12 @@ import {
 const filtersSchema = z
   .object({
     dates: z.object({
-      start_date: z.date(),
-      end_date: z.date(),
+      start_date: z.date().refine((date) => date <= new Date(), {
+        message: "Start date must be in the past",
+      }),
+      end_date: z.date().refine((date) => date <= new Date(), {
+        message: "End date must be in the past",
+      }),
     }),
     currencies: z.array(z.string()).min(1, "Select at least one currency"),
   })
@@ -43,6 +47,10 @@ export default function Home() {
     resolver: zodResolver(filtersSchema),
   });
 
+  const onSubmit = (data: Filters) => {
+    console.log(data);
+  };
+
   return (
     <Card className="min-h-screen w-full">
       <CardHeader className="p-4 md:p-6">
@@ -53,10 +61,13 @@ export default function Home() {
       </CardHeader>
       <CardContent className="p-4 md:p-6">
         <FormProvider {...methods}>
-          <div className="flex flex-col gap-12">
+          <form
+            onSubmit={methods.handleSubmit(onSubmit)}
+            className="flex flex-col gap-12"
+          >
             <FiltersForm />
             {methods.watch().currencies.length > 0 && <Chart />}
-          </div>
+          </form>
         </FormProvider>
       </CardContent>
     </Card>

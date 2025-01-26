@@ -9,15 +9,8 @@ import { Button } from "./ui/button";
 export function FiltersForm() {
   const methods = useFormContext<Filters>();
 
-  async function onSubmit(data: Filters) {
-    console.log(data);
-  }
-
   return (
-    <form
-      onSubmit={methods.handleSubmit(onSubmit)}
-      className="flex flex-col gap-4 md:flex-row"
-    >
+    <div className="flex flex-col gap-4 md:flex-row">
       <Dates />
       <Symbols />
       <Button
@@ -28,6 +21,6 @@ export function FiltersForm() {
       >
         Search
       </Button>
-    </form>
+    </div>
   );
 }

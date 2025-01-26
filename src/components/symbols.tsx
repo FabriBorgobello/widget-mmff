@@ -53,7 +53,7 @@ export function Symbols() {
                 }))}
               />
               {methods.formState.errors.currencies && (
-                <div className="mt-1 text-sm text-red-600">
+                <div className="text-sm text-red-600">
                   {methods.formState.errors.currencies.message}
                 </div>
               )}
