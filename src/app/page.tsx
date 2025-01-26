@@ -17,7 +17,7 @@ import {
 const filtersSchema = z.object({
   start_date: z.date(),
   end_date: z.date(),
-  currencies: z.array(z.string()),
+  currencies: z.array(z.string()).min(1, "Select at least one currency"),
 });
 
 export type Filters = z.infer<typeof filtersSchema>;

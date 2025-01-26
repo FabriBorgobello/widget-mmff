@@ -52,6 +52,11 @@ export function Symbols() {
                   label: `${symbol.id} - ${symbol.name}`,
                 }))}
               />
+              {methods.formState.errors.currencies && (
+                <div className="text-sm text-red-600">
+                  {methods.formState.errors.currencies.message}
+                </div>
+              )}
             </div>
           );
         }}
