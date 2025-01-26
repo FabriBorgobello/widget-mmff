@@ -66,7 +66,9 @@ export default function Home() {
             className="flex flex-col gap-12"
           >
             <FiltersForm />
-            {methods.watch().currencies.length > 0 && <Chart />}
+            {methods.formState.isSubmitSuccessful && (
+              <Chart filters={methods.getValues()} />
+            )}
           </form>
         </FormProvider>
       </CardContent>

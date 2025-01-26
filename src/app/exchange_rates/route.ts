@@ -30,8 +30,7 @@ export async function GET(request: NextRequest) {
         eq(exchangeRates.baseCurrencyId, "USD"),
         gte(exchangeRates.date, query.start_date),
         lte(exchangeRates.date, query.end_date),
-        query.currencies &&
-          inArray(exchangeRates.targetCurrencyId, query.currencies),
+        inArray(exchangeRates.targetCurrencyId, query.currencies),
         not(inArray(exchangeRates.targetCurrencyId, ["USD"])),
       ),
     );

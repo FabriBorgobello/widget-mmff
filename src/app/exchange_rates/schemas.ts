@@ -201,8 +201,7 @@ export const exchangeRateRequestSchema = z.object({
   currencies: z
     .string()
     .transform((value) => value.split(",").map((item) => item.trim()))
-    .pipe(z.array(currencyCodeSchema))
-    .optional(),
+    .pipe(z.array(currencyCodeSchema)),
 });
 
 export type ExchangeRateRequest = z.infer<typeof exchangeRateRequestSchema>;

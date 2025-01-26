@@ -2,6 +2,7 @@ import { Suspense } from "react";
 
 import { ErrorBoundary } from "react-error-boundary";
 
+import { Filters } from "@/app/page";
 import {
   Card,
   CardContent,
@@ -14,7 +15,7 @@ import {
 import { ChartContent } from "./chart-content";
 import { ChartFooter } from "./chart-footer";
 
-export function Chart() {
+export function Chart({ filters }: { filters: Filters }) {
   return (
     <Card>
       <CardHeader>
@@ -37,7 +38,7 @@ export function Chart() {
               <div className="aspect-video h-full w-full animate-pulse rounded-lg bg-gray-100"></div>
             }
           >
-            <ChartContent />
+            <ChartContent filters={filters} />
           </Suspense>
         </ErrorBoundary>
       </CardContent>

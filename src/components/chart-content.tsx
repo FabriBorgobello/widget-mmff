@@ -1,7 +1,6 @@
 "use client";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
-import { useFormContext, useWatch } from "react-hook-form";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 import {
@@ -47,17 +46,14 @@ async function getExchangeRates(
   return exchangeRateResponseSchema.parse(await res.json());
 }
 
-export function ChartContent() {
-  const methods = useFormContext<Filters>();
-  const filters = useWatch<Filters>({ control: methods.control });
-
+export function ChartContent({ filters }: { filters: Filters }) {
   /** Formats the filters into a format that the server can consume */
   const formattedFilters: FormattedFilters = {
-    start_date: filters.start_date
-      ? format(filters.start_date, "yyyy-MM-dd")
+    start_date: filters.dates?.start_date
+      ? format(filters.dates.start_date, "yyyy-MM-dd")
       : undefined,
-    end_date: filters.end_date
-      ? format(filters.end_date, "yyyy-MM-dd")
+    end_date: filters.dates?.end_date
+      ? format(filters.dates.end_date, "yyyy-MM-dd")
       : undefined,
     currencies:
       filters.currencies && filters.currencies.length
