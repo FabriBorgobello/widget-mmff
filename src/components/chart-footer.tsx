@@ -18,10 +18,10 @@ export function ChartFooter() {
             {filters.currencies.length > 1 ? "currencies" : "currency"}.
           </div>
         )}
-        {filters.start_date && filters.end_date && (
+        {filters.dates?.start_date && filters.dates?.end_date && (
           <div className="flex items-center gap-2 font-medium leading-none text-muted-foreground">
-            {format(filters.start_date, "MMM dd, yyyy")} to{" "}
-            {format(filters.end_date, "MMM dd, yyyy")}.
+            {format(filters.dates?.start_date, "MMM dd, yyyy")} to{" "}
+            {format(filters.dates?.end_date, "MMM dd, yyyy")}.
           </div>
         )}
       </div>
