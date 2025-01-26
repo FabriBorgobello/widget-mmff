@@ -4,6 +4,7 @@ import { Filters } from "@/app/page";
 
 import { Dates } from "./dates";
 import { Symbols } from "./symbols";
+import { Button } from "./ui/button";
 
 export function FiltersForm() {
   const methods = useFormContext<Filters>();
@@ -19,6 +20,14 @@ export function FiltersForm() {
     >
       <Dates />
       <Symbols />
+      <Button
+        type="submit"
+        size={"lg"}
+        className="mt-4 md:mt-6"
+        disabled={methods.formState.isSubmitting}
+      >
+        Search
+      </Button>
     </form>
   );
 }
