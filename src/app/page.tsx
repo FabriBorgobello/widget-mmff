@@ -14,17 +14,26 @@ import {
   CardContent,
 } from "@/components/ui/card";
 
-const filtersSchema = z.object({
-  start_date: z.date(),
-  end_date: z.date(),
-  currencies: z.array(z.string()).min(1, "Select at least one currency"),
-});
+const filtersSchema = z
+  .object({
+    dates: z.object({
+      start_date: z.date(),
+      end_date: z.date(),
+    }),
+    currencies: z.array(z.string()).min(1, "Select at least one currency"),
+  })
+  .refine(({ dates }) => dates.start_date <= dates.end_date, {
+    path: ["dates"],
+    message: "Start date must be before end date",
+  });
 
 export type Filters = z.infer<typeof filtersSchema>;
 
 const FILTERS_DEFAULTS: Filters = {
-  start_date: new Date("2024-12-01"),
-  end_date: new Date("2024-12-31"),
+  dates: {
+    start_date: new Date("2024-12-01"),
+    end_date: new Date("2024-12-31"),
+  },
   currencies: [],
 };
 
