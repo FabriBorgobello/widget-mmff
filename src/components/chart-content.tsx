@@ -90,14 +90,22 @@ export function ChartContent({ filters }: { filters: Filters }) {
         <YAxis
           type="number"
           tickMargin={8}
-          tickFormatter={(value) => value.toFixed(2)}
+          tickFormatter={(value) =>
+            new Intl.NumberFormat("en-US", {
+              notation: "compact",
+              compactDisplay: "short",
+              style: "currency",
+              currency: "USD",
+              minimumFractionDigits: 2,
+            }).format(value)
+          }
         />
         <XAxis
           dataKey="date"
           type="category"
           interval={Math.ceil(Object.keys(data.rates).length / 10)}
           tickMargin={8}
-          tickFormatter={(value) => format(value, "MMM dd")}
+          tickFormatter={(value) => format(value, "dd/MM/yy")}
         />
         <ChartTooltip
           cursor={false}
