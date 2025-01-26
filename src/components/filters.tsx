@@ -5,12 +5,13 @@ import { Filters } from "@/app/page";
 import { Dates } from "./dates";
 import { Symbols } from "./symbols";
 import { Button } from "./ui/button";
+import { Card } from "./ui/card";
 
 export function FiltersForm() {
   const methods = useFormContext<Filters>();
 
   return (
-    <div className="flex flex-col gap-4 md:flex-row">
+    <Card className="flex flex-col gap-4 p-6 md:flex-row">
       <Dates />
       <Symbols />
       <Button
@@ -21,6 +22,6 @@ export function FiltersForm() {
       >
         Search
       </Button>
-    </div>
+    </Card>
   );
 }

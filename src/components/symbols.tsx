@@ -39,7 +39,7 @@ export function Symbols() {
       name="currencies"
       render={({ field }) => {
         return (
-          <div className="flex w-full max-w-[600px] flex-col gap-1">
+          <div className="flex max-w-full flex-col gap-1 md:w-[600px]">
             <label className="block text-sm font-medium text-gray-700">
               Currencies
             </label>

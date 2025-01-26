@@ -21,7 +21,7 @@ export function Dates() {
   console.log(methods.formState.errors);
   return (
     <div className="flex flex-col justify-between gap-1">
-      <div className="flex flex-col gap-4 sm:flex-row">
+      <div className="flex flex-col gap-4 lg:flex-row">
         {(["dates.start_date", "dates.end_date"] as const).map((name) => (
           <Controller
             key={name}

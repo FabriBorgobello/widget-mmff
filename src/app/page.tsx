@@ -5,9 +5,9 @@ import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Chart } from "@/components/chart";
+import { Disclaimer } from "@/components/disclaimer";
 import { FiltersForm } from "@/components/filters";
 import {
-  Card,
   CardHeader,
   CardTitle,
   CardDescription,
@@ -52,7 +52,7 @@ export default function Home() {
   };
 
   return (
-    <Card className="min-h-screen w-full">
+    <div className="min-h-screen w-full p-2 md:p-4 xl:p-6">
       <CardHeader className="p-4 md:p-6">
         <CardTitle className="text-2xl">Currency Exchange Rates</CardTitle>
         <CardDescription>
@@ -65,6 +65,7 @@ export default function Home() {
             onSubmit={methods.handleSubmit(onSubmit)}
             className="flex flex-col gap-12"
           >
+            <Disclaimer />
             <FiltersForm />
             {methods.formState.isSubmitSuccessful && (
               <Chart filters={methods.getValues()} />
@@ -72,6 +73,6 @@ export default function Home() {
           </form>
         </FormProvider>
       </CardContent>
-    </Card>
+    </div>
   );
 }

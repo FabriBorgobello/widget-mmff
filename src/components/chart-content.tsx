@@ -1,7 +1,7 @@
 "use client";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, CartesianGrid, Legend, XAxis, YAxis } from "recharts";
 
 import {
   ExchangeRateResponse,
@@ -84,12 +84,13 @@ export function ChartContent({ filters }: { filters: Filters }) {
       <AreaChart
         accessibilityLayer
         data={formatChartData(data)}
-        margin={{ left: 12, right: 12 }}
+        margin={{ left: 8, right: 8 }}
       >
         <CartesianGrid vertical={false} />
         <YAxis
           type="number"
           tickMargin={8}
+          allowDataOverflow
           tickFormatter={(value) =>
             new Intl.NumberFormat("en-US", {
               notation: "compact",
@@ -107,7 +108,9 @@ export function ChartContent({ filters }: { filters: Filters }) {
           tickMargin={8}
           tickFormatter={(value) => format(value, "dd/MM/yy")}
         />
+        <Legend verticalAlign="top" height={36} />
         <ChartTooltip
+          labelFormatter={(value) => format(value, "MMM dd, yyyy")}
           cursor={false}
           content={<ChartTooltipContent indicator="dot" />}
         />
