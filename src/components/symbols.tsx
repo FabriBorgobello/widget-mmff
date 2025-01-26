@@ -32,37 +32,37 @@ export function Symbols() {
         </pre>
       </div>
     );
-  if (status === "pending") return <div>Loading...</div>;
 
-  if (status === "success") {
-    return (
-      <Controller
-        control={methods.control}
-        name="currencies"
-        render={({ field }) => {
-          return (
-            <div className="flex w-full max-w-[600px] flex-col gap-1">
-              <label className="block text-sm font-medium text-gray-700">
-                Currencies
-              </label>
-              <MultiSelect
-                onValueChange={field.onChange}
-                options={data.map((symbol) => ({
-                  value: symbol.id,
-                  label: `${symbol.id} - ${symbol.name}`,
-                }))}
-              />
-              {methods.formState.errors.currencies && (
-                <div className="text-sm text-red-600">
-                  {methods.formState.errors.currencies.message}
-                </div>
-              )}
-            </div>
-          );
-        }}
-      />
-    );
-  }
-
-  status satisfies never;
+  return (
+    <Controller
+      control={methods.control}
+      name="currencies"
+      render={({ field }) => {
+        return (
+          <div className="flex w-full max-w-[600px] flex-col gap-1">
+            <label className="block text-sm font-medium text-gray-700">
+              Currencies
+            </label>
+            <MultiSelect
+              disabled={status === "pending"}
+              onValueChange={field.onChange}
+              options={
+                data
+                  ? data.map((symbol) => ({
+                      value: symbol.id,
+                      label: `${symbol.id} - ${symbol.name}`,
+                    }))
+                  : []
+              }
+            />
+            {methods.formState.errors.currencies && (
+              <div className="text-sm text-red-600">
+                {methods.formState.errors.currencies.message}
+              </div>
+            )}
+          </div>
+        );
+      }}
+    />
+  );
 }

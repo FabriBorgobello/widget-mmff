@@ -1,5 +1,7 @@
+import React from "react";
+
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, XIcon } from "lucide-react";
 import { Controller, useFormContext } from "react-hook-form";
 
 import { Filters } from "@/app/page";
@@ -10,6 +12,10 @@ import { Calendar } from "./ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 export function Dates() {
+  const [isCalendarOpen, setIsCalendarOpen] = React.useState({
+    "dates.start_date": false,
+    "dates.end_date": false,
+  });
   const methods = useFormContext<Filters>();
 
   console.log(methods.formState.errors);
@@ -28,9 +34,16 @@ export function Dates() {
                   <label className="block text-sm font-medium text-gray-700">
                     {name === "dates.start_date" ? "Start Date" : "End Date"}
                   </label>
-                  <Popover>
+                  <Popover open={isCalendarOpen[name]}>
                     <PopoverTrigger asChild>
                       <Button
+                        onClick={() => {
+                          setIsCalendarOpen((prev) => ({
+                            "dates.end_date": false,
+                            "dates.start_date": false,
+                            [name]: !prev[name],
+                          }));
+                        }}
                         variant={"outline"}
                         className={cn(
                           "w-full justify-start pl-3 text-left font-normal md:w-auto",
@@ -46,10 +59,36 @@ export function Dates() {
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent align="start">
+                      <div className="flex justify-end">
+                        <Button
+                          size={"sm"}
+                          variant={"ghost"}
+                          onClick={() =>
+                            setIsCalendarOpen({
+                              "dates.end_date": false,
+                              "dates.start_date": false,
+                            })
+                          }
+                        >
+                          <XIcon className="h-4 w-4" />
+                        </Button>
+                      </div>
                       <Calendar
+                        disabled={{
+                          after: new Date(),
+                          before: new Date("2022-01-01"),
+                        }}
+                        showOutsideDays={false}
                         mode="single"
                         selected={new Date(value)}
-                        onSelect={onChange}
+                        onSelect={(date) => {
+                          onChange(date);
+                          setIsCalendarOpen((prev) => ({
+                            ...prev,
+                            [name]: false,
+                          }));
+                        }}
+                        classNames={{ cell: "w-[32px] text-center" }}
                         initialFocus
                       />
                     </PopoverContent>
